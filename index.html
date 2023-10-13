@@ -5,11 +5,19 @@
     <body>
         <h1>Blackjack</h1>
         <p id="message-el">Want to play a round?</p>
+        <p id="player-el"></p>
         <p id="cards-el">Cards:</p>
         <p id="sum-el">Sum:</p>
-        <button onclick="startGame()">START GAME</button>
-        <button onclick="newCard()">NEW CARD</button>
-        <p id="player-el"></p>
+        <button id="startBtn" onclick="startGame()">START GAME</button>
+        <button id="doubleBtn" onclick="double()">DOUBLE</button>
+        <button id="splitBtn" onclick="split()">SPLIT</button>
+        <button id="newCardBtn" onclick="newCard()">NEW CARD</button>
+        <button id="standBtn" onclick="stand()">STAND</button>
+        <button id="dealerBtn" onclick="dealerNewCard()">DEAL</button>
+        <p id="dealer-cards-el">Dealer's cards:</p>
+        <p id="dealer-sum-el">Dealer's sum:</p>
+        <p></p>
+        <p>House stays at 17 or higher</p>
         <script src="index.js"></script>
     </body>
 </html>
