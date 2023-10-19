@@ -1,22 +1,40 @@
-<html>
-    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-        <link rel="stylesheet" href="index.css">
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <head>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+        />
+        <link rel="stylesheet" href="index.css" />
     </head>
     <body>
         <h1>Blackjack</h1>
         <p id="message-el">Want to play a round?</p>
         <p id="player-el"></p>
+        <p id="chips-el"></p>
         <p id="cards-el">Cards:</p>
         <p id="sum-el">Sum:</p>
+        <p id="yourName">
+            Enter your name:
+            <input
+                type="text"
+                required
+                id="name"
+                placeholder="Select your name"
+            />
+        </p>
+        <button id="enterBtn">ENTER THE TABLE</button>
         <button id="startBtn" onclick="startGame()">START GAME</button>
         <button id="doubleBtn" onclick="double()">DOUBLE</button>
         <button id="splitBtn" onclick="split()">SPLIT</button>
         <button id="newCardBtn" onclick="newCard()">NEW CARD</button>
         <button id="standBtn" onclick="stand()">STAND</button>
-        <button id="dealerBtn" onclick="dealerNewCard()">DEAL</button>
+        <button id="dealerBtn" onclick="dealerCard()">DEAL</button>
         <p id="dealer-cards-el">Dealer's cards:</p>
         <p id="dealer-sum-el">Dealer's sum:</p>
         <p></p>
+        <p id="dealer-el"></p>
         <p>House stays at 17 or higher</p>
         <script src="index.js"></script>
     </body>

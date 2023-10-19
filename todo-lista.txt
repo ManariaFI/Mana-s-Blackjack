@@ -1,0 +1,11 @@
+Mana's Blackjackin todo:
+- Aloitusruutu nimensyötöllä - Done 19.10.23
+- Korjaa ässäkortin toiminta - Done 19.10.23
+- Lisää kuvakortit 
+- Lisää maat (maybe)
+- Split-funktio toimii oikein
+- Jakajan kassa - Done 19.10.23
+- Game Over
+- Voittoruutu
+
+Bugilista:
