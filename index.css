@@ -1,5 +1,6 @@
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", Arial,
+        sans-serif;
     background-image: url("images/table.png");
     background-size: cover;
     font-weight: bold;
@@ -26,4 +27,12 @@ button {
     border-radius: 2px;
     margin-bottom: 2px;
     margin-top: 2px;
+}
+.bet {
+    border-radius: 60px;
+    width: 60px;
+    height: 60px;
+    padding: 2px;
+    font-style: italic;
+    border: dotted black 5px;
 }
