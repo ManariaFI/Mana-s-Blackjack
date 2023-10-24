@@ -7,6 +7,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
         />
         <link rel="stylesheet" href="index.css" />
+        <title>Mana's Blackjack</title>
     </head>
     <body>
         <h1>Blackjack</h1>
@@ -17,25 +18,32 @@
         <p id="sum-el">Sum:</p>
         <p id="yourName">
             Enter your name:
-            <input
-                type="text"
-                required
-                id="name"
-                placeholder="Select your name"
-            />
+            <input type="text" id="name-el" placeholder="Select your name" />
         </p>
         <button id="enterBtn">ENTER THE TABLE</button>
         <button id="startBtn" onclick="startGame()">START GAME</button>
-        <button id="doubleBtn" onclick="double()">DOUBLE</button>
-        <button id="splitBtn" onclick="split()">SPLIT</button>
-        <button id="newCardBtn" onclick="newCard()">NEW CARD</button>
-        <button id="standBtn" onclick="stand()">STAND</button>
-        <button id="dealerBtn" onclick="dealerCard()">DEAL</button>
+        <button class="bet" id="bet10">$10</button
+        ><button class="bet" id="bet20">$20</button
+        ><button class="bet" id="bet30">$30</button
+        ><button class="bet" id="bet40">$40</button
+        ><button class="bet" id="bet50">$50</button>
+        <button class="gameBtn" id="doubleBtn" onclick="double()">
+            DOUBLE
+        </button>
+        <button class="gameBtn" id="newCardBtn" onclick="newCard()">
+            NEW CARD
+        </button>
+        <button class="gameBtn" id="standBtn" onclick="stand()">STAND</button>
+        <button class="gameBtn" id="dealerBtn" onclick="dealerCard()">
+            DEAL
+        </button>
+        <button id="restartBtn" onclick="restart()">Play again?</button>
         <p id="dealer-cards-el">Dealer's cards:</p>
         <p id="dealer-sum-el">Dealer's sum:</p>
         <p></p>
         <p id="dealer-el"></p>
         <p>House stays at 17 or higher</p>
-        <script src="index.js"></script>
+        <p class="slogan">In the end, the House always wins!</p>
+        <script src="game.js"></script>
     </body>
 </html>

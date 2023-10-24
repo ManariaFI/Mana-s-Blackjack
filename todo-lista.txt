@@ -1,11 +1,33 @@
 Mana's Blackjackin todo:
 - Aloitusruutu nimensyötöllä - Done 19.10.23
 - Korjaa ässäkortin toiminta - Done 19.10.23
-- Lisää kuvakortit 
-- Lisää maat (maybe)
+- Lisää kuvakortit - Done 24.10.23
+- Lisää maat - Done 24.10.23
+-> lisää pakka - Done 24.10.23
+- Kortti-spritet (Mana tekee vapaa-ajalla)
 - Split-funktio toimii oikein
 - Jakajan kassa - Done 19.10.23
-- Game Over
-- Voittoruutu
+- Game Over - Done 24.10.23
+- Voittoruutu - Done 24.10.23
+- Restart-painike
+- Panoksen valitseminen - Done 24.10.23
+- Sääntöpainike
+- Bugien korjaus
+- js-tiedostojen linkittäminen yhtenäiseksi kokonaisuudeksi
+
+Muotoilu:
+- Visuaalisempi käyttöliittymä
+- Oikeat pelikortit -> vaatii pelikorttien hardcodea?
+- Joitain hassuja turhia ekstroja
+- Nimensyötöstä oma ponnahdusikkunansa
+- Kielivalikko
+- Suomenkielinen käännös
+
+Muut:
+- Lisää Blackjackin lisäksi Venttisäännöt vaihtoehdoksi
+- Päävalikko pelin valitsemiseksi
+
 
 Bugilista:
+- jakaja nostaa aina kortin salatun kortin paljastuttua - korjattu
+- Nimensyöttö päästää eteenpäin vaikka nimeä ei ole valittu -> johtuu siitä että pelin aloitus käyttää buttonia?
