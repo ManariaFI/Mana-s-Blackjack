@@ -9,11 +9,11 @@ Mana's Blackjackin todo:
 - Jakajan kassa - Done 19.10.23
 - Game Over - Done 24.10.23
 - Voittoruutu - Done 24.10.23
-- Restart-painike
+- Restart-painike - Done 26.10.22
 - Panoksen valitseminen - Done 24.10.23
 - Sääntöpainike
 - Bugien korjaus
-- js-tiedostojen linkittäminen yhtenäiseksi kokonaisuudeksi
+- js-tiedostojen linkittäminen yhtenäiseksi kokonaisuudeksi -> ei tarvetta
 
 Muotoilu:
 - Visuaalisempi käyttöliittymä
