@@ -13,31 +13,75 @@ h1 {
     background-color: #016f32;
     border: solid goldenrod 5px;
     padding: 3px;
-    width: 35%;
+    width: 270px;
     font-style: italic;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 3em;
+    font-size: 2em;
     text-align: center;
-    margin: 10px auto;
+    margin: 5px auto;
     border-radius: 30px;
+    user-select: none;
+    margin: auto;
 }
 
-#message-el {
+.box {
     font-style: italic;
+    background-color: aliceblue;
+    color: navy;
+    width: 200px;
+    height: 60px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    font-size: 1.2em;
+    border-radius: 15px;
+    position: relative;
+}
+.lang {
+    width: 60px;
+    margin: 5px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.en,
+.fi {
+    justify-content: center;
+}
+.en:hover {
+    background-color: blue;
+    color: red;
 }
 
+.fi:hover {
+    background-color: white;
+    color: blue;
+}
 button {
     color: #016f32;
     width: 150px;
     background: goldenrod;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     font-weight: bold;
     border: none;
-    border-radius: 2px;
+    border-radius: 4px;
     margin-bottom: 2px;
     margin-top: 2px;
 }
+button:hover {
+    background: red;
+    cursor: pointer;
+}
+
 .bet {
     border-radius: 60px;
     width: 60px;
@@ -49,4 +93,174 @@ button {
 .bet:hover {
     cursor: pointer;
     background: red;
+}
+#bet20:hover {
+    cursor: pointer;
+    background: red;
+}
+#bet30:hover {
+    cursor: pointer;
+    background: red;
+}
+#bet40:hover {
+    cursor: pointer;
+    background: red;
+}
+#bet50:hover {
+    cursor: pointer;
+    background: red;
+}
+
+p {
+    user-select: none;
+}
+
+.box::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 98%;
+    margin-top: -20px;
+    border-width: 20px;
+    border-style: solid;
+    border-color: transparent transparent transparent aliceblue;
+}
+.player {
+    display: grid;
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(5, 20%);
+    margin: auto;
+    width: 325px;
+    height: 150px;
+    padding: 3px;
+}
+
+.name {
+    grid-column: 1 / 4;
+    background-color: #016f32;
+    color: goldenrod;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid goldenrod;
+}
+.chips {
+    grid-column: 4 / 7;
+    background-color: #016f32;
+    color: goldenrod;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 3px solid goldenrod;
+}
+.bet-amount {
+    grid-column: 7 / 11;
+    background-color: #016f32;
+    color: goldenrod;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 3px solid goldenrod;
+}
+.cards {
+    grid-column: 1 /11;
+    grid-row: 2 / 5;
+    background-color: goldenrod;
+    color: #016f32;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 3px solid goldenrod;
+}
+.sum {
+    grid-column: 4 / 8;
+    grid-row: 5 / 6;
+    background-color: #016f32;
+    color: goldenrod;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 3px solid goldenrod;
+}
+.dealer {
+    display: grid;
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(5, 20%);
+    margin: auto;
+    width: 325px;
+    height: 150px;
+    padding: 3px;
+}
+.dealer-cards {
+    grid-column: 1 /11;
+    grid-row: 2 / 5;
+    background-color: goldenrod;
+    color: #016f32;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 3px solid goldenrod;
+}
+.dealer-chips {
+    grid-column: 6 /11;
+    grid-row: 1 / 2;
+    background-color: #016f32;
+    color: goldenrod;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 3px solid goldenrod;
+}
+.dealer-sum {
+    grid-column: 4 / 8;
+    grid-row: 5 / 6;
+    background-color: #016f32;
+    color: goldenrod;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 3px solid goldenrod;
+}
+.dealer-name {
+    grid-column: 1 / 6;
+    grid-row: 1 / 2;
+    background-color: #016f32;
+    color: goldenrod;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 3px solid goldenrod;
+}
+.game-data {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.info {
+    color: goldenrod;
+    font-style: italic;
+    font-size: 1em;
+    background-color: #016f32;
+    border: goldenrod solid 3px;
+    align-self: flex-end;
+    border-radius: 15px;
+    padding: 3px;
+}
+#bet20 {
+    background-color: lightseagreen;
+    color: goldenrod;
+}
+#bet30 {
+    background-color: blue;
+    color: goldenrod;
+}
+#bet40 {
+    background-color: pink;
+    color: #016f32;
+}
+#bet50 {
+    background-color: black;
+    color: goldenrod;
+    border: dotted white 5px;
 }

@@ -29,18 +29,106 @@ const cardsEl = document.getElementById("cards-el");
 const playerEl = document.getElementById("player-el");
 const dealerSumEl = document.getElementById("dealer-sum-el");
 const dealerCardsEl = document.getElementById("dealer-cards-el");
+const chipsEl = document.getElementById("chips-el");
+const dealerChipsEl = document.getElementById("dealer-chips-el");
 const enterBtnEl = document.getElementById("enterBtn");
 const dealerEl = document.getElementById("dealer-el");
 const nameEl = document.getElementById("name-el");
 const betEl = document.getElementById("bet-el");
+const playerTableEl = document.getElementById("player-table-el");
+const dealerTableEl = document.getElementById("dealer-table-el");
+const enBtnEl = document.getElementById("en-btn");
+const fiBtnEl = document.getElementById("fi-btn");
+const rulesEl = document.getElementById("rules");
+const sloganEl = document.getElementById("slogan");
 
 function renderData() {
-    playerEl.textContent = player.name + ": $" + player.chips;
-    dealerEl.textContent = "The House: $" + dealer.chips;
-    betEl.textContent = "Current bet: $" + player.currentBet;
+    playerEl.textContent = player.name;
+    chipsEl.textContent = "$" + player.chips;
+    dealerEl.textContent = "Mana";
+    dealerChipsEl.textContent = "$" + dealer.chips;
+    betEl.textContent = "Bet: $" + player.currentBet;
+}
+//Localization script:
+let lang = "en";
+enBtnEl.addEventListener("click", function () {
+    lang = "en";
+    console.log(lang);
+    renderTranslate();
+});
+fiBtnEl.addEventListener("click", function () {
+    lang = "fi";
+    console.log(lang);
+    renderTranslate();
+});
+
+const local = {
+    welcome: {
+        en: "Want to play a round against me?",
+        fi: "Pelataanko pari erää?",
+    },
+    chips: {
+        en: "$",
+        fi: "€",
+    },
+    name: {
+        en: "Select your name:",
+        fi: "Valitse nimesi:",
+    },
+    enter: {
+        en: "ENTER THE TABLE",
+        fi: "ISTU PÖYTÄÄN",
+    },
+    start: {
+        en: "START GAME",
+        fi: "ALOITA PELI",
+    },
+    bet: {
+        en: "Bet: ",
+        fi: "Panos: ",
+    },
+    sum: {
+        en: "Sum: ",
+        fi: "Summa: ",
+    },
+    cards: {
+        en: "Cards: ",
+        fi: "Kortit: ",
+    },
+    dealerCards: {
+        en: "Dealer's cards:",
+        fi: "Jakajan kortit:",
+    },
+    rules: {
+        en: "House stays at 17 or higher",
+        fi: "Talo jää, jos tulos 17 tai yli",
+    },
+    slogan: {
+        en: "In the end, the House always wins!",
+        fi: "Lopulta, talo voittaa aina!",
+    },
+    handStart: {
+        en: "Ok, your bet is $" + player.currentBet + " this time!",
+        fi: "Ok, panoksesi on " + player.currentBet + "€!",
+    },
+};
+function renderTranslate() {
+    messageEl.textContent = local.welcome[lang];
+    yourName.textContent = local.name[lang];
+    chipsEl.textContent = local.chips[lang] + player.chips;
+    dealerChipsEl.textContent = local.chips[lang] + dealer.chips;
+    betEl.textContent = local.bet[lang] + local.chips[lang] + player.currentBet;
+    enterBtn.textContent = local.enter[lang];
+    sumEl.textContent = local.sum[lang];
+    dealerSumEl.textContent = local.sum[lang];
+    cardsEl.textContent = local.cards[lang];
+    dealerCardsEl.textContent = local.dealerCards[lang];
+    rulesEl.textContent = local.rules[lang];
+    sloganEl.textContent = local.slogan[lang];
 }
 
 //Game Start
+renderTranslate();
 hideButtons();
 startBtn.style.display = "none";
 prepareDeck();
@@ -94,7 +182,7 @@ function dealerAceCheck() {
 //
 
 function handStart() {
-    message = "Ok, your bet is $" + player.currentBet + " this time!";
+    message = local.handStart[lang];
     doubleBtn.style.display = "initial";
     newCardBtn.style.display = "initial";
     standBtn.style.display = "initial";
@@ -114,16 +202,16 @@ function handStart() {
 
 function renderGame() {
     aceCheck();
-    cardsEl.textContent = "Cards: ";
+    cardsEl.textContent = "";
     for (let i = 0; i < player.hand.length; i++) {
         cardsEl.textContent += player.hand[i] + " ";
     }
     sumEl.textContent = "Sum: " + player.sum;
-    dealerCardsEl.textContent = "Dealer's cards: ";
+    dealerCardsEl.textContent = "";
     for (let i = 0; i < dealer.hand.length; i++) {
         dealerCardsEl.textContent += dealer.hand[i] + " ";
     }
-    dealerSumEl.textContent = "Dealer's sum: " + dealer.sum;
+    dealerSumEl.textContent = "Sum: " + dealer.sum;
     if (player.sum <= 20) {
         message = "Do you want to draw a new card?";
     } else if (player.sum === 21 && player.hand.length === 2) {
@@ -152,15 +240,16 @@ function double() {
     player.sum += cardValue(card);
     player.hand.push(card);
     aceCheck();
-    cardsEl.textContent = "Cards: ";
+    cardsEl.textContent = "";
     for (let i = 0; i < player.hand.length; i++) {
         cardsEl.textContent += player.hand[i] + " ";
     }
-    dealerCardsEl.textContent = "Dealer's cards: ";
+    dealer.hand.push(dealer.secondCard);
+    dealerCardsEl.textContent = "";
     for (let i = 0; i < dealer.hand.length; i++) {
         dealerCardsEl.textContent += dealer.hand[i] + " ";
     }
-    dealerSumEl.textContent = "Dealer's sum: " + dealer.sum;
+    dealerSumEl.textContent = "Sum: " + dealer.sum;
     sumEl.textContent = "Sum: " + player.sum;
     dealer.hand = [dealer.firstCard, dealer.secondCard];
     dealer.sum = cardValue(dealer.firstCard) + cardValue(dealer.secondCard);
@@ -186,10 +275,13 @@ function stand() {
     hideButtons();
     message = "Ok, it's my turn now!";
     player.canHit = false;
-    dealerCardsEl.textContent =
-        "Dealer's Cards: " + dealer.firstCard + " " + dealer.secondCard;
+    dealer.hand.push(dealer.secondCard);
+    dealerCardsEl.textContent = "";
+    for (let i = 0; i < dealer.hand.length; i++) {
+        dealerCardsEl.textContent += dealer.hand[i] + " ";
+    }
     dealer.sum = cardValue(dealer.firstCard) + cardValue(dealer.secondCard);
-    dealer.sumEl = textContent = "Dealer's sum: " + dealer.sum;
+    dealer.sumEl = textContent = "Sum: " + dealer.sum;
     messageEl.textContent = message;
     renderData();
     dealerBtn.style.display = "initial";
@@ -197,12 +289,12 @@ function stand() {
 
 function renderDealer() {
     dealerAceCheck();
-    dealerCardsEl.textContent = "Dealer's cards: ";
+    dealerCardsEl.textContent = "";
 
     for (let i = 0; i < dealer.hand.length; i++) {
         dealerCardsEl.textContent += dealer.hand[i] + " ";
 
-        dealerSumEl.textContent = "Dealer's sum: " + dealer.sum;
+        dealerSumEl.textContent = "Sum: " + dealer.sum;
     }
     if (dealer.sum > 16 && player.sum < dealer.sum && dealer.sum < 22) {
         message = "The house wins!";
@@ -226,7 +318,7 @@ function renderDealer() {
         mainMenu();
     } else {
         message = "As per rules, drawing new card";
-        message.textContent = message;
+        messageEl.textContent = message;
     }
     messageEl.textContent = message;
 }
@@ -281,13 +373,14 @@ bet50.addEventListener("click", function () {
     handStart();
 });
 enterBtnEl.addEventListener("click", function () {
-    player.name = nameEl.value;
-    enterBtn.style.display = "none";
-    nameEl.style.display = "none";
-    yourName.style.display = "none";
-
-    mainMenu();
-    renderData();
+    if (nameEl.value.length > 0) {
+        player.name = nameEl.value;
+        enterBtn.style.display = "none";
+        nameEl.style.display = "none";
+        yourName.style.display = "none";
+        mainMenu();
+        renderData();
+    }
 });
 //Deck preparing, n declares amount of decks used
 function createDeck(n) {
@@ -479,7 +572,7 @@ function mainMenu() {
     hideButtons();
     fullReset();
     startBtn.style.display = "initial";
-    betEl.textContent = "Current bet: $" + player.currentBet;
+    betEl.textContent = "Bet: $" + player.currentBet;
 }
 
 function startGame() {
@@ -499,8 +592,8 @@ function startGame() {
         player.currentBet = 0;
         bet();
         renderData();
-        cardsEl.textContent = "Cards: " + player.hand;
-        dealerCardsEl.textContent = "Dealer's cards: " + dealer.hand;
+        cardsEl.textContent = player.hand;
+        dealerCardsEl.textContent = dealer.hand;
         startBtn.style.display = "none";
     }
 }

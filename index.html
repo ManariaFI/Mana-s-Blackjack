@@ -10,18 +10,16 @@
         <title>Mana's Blackjack</title>
     </head>
     <body>
+        <header>
+            <button class="lang en" id="en-btn">EN</button
+            ><button class="lang fi" id="fi-btn">FI</button>
+        </header>
         <h1>Mana's Blackjack</h1>
-        <p id="message-el">Want to play a round against me?</p>
-        <p id="player-el"></p>
-        <p id="chips-el"></p>
-        <p id="bet-el"></p>
-        <p id="cards-el">Cards:</p>
-        <p id="sum-el">Sum:</p>
-        <p id="yourName">
-            Enter your name:
-            <input type="text" id="name-el" placeholder="Select your name" />
-        </p>
-        <button id="enterBtn">ENTER THE TABLE</button>
+        <p id="message-el" class="box"></p>
+
+        <p id="yourName"></p>
+        <input type="text" id="name-el" placeholder="Select your name" />
+        <button id="enterBtn"></button>
         <button id="startBtn" onclick="startGame()">START GAME</button>
         <button class="bet" id="bet10">$10</button
         ><button class="bet" id="bet20">$20</button
@@ -39,12 +37,40 @@
             DEAL
         </button>
         <button id="restartBtn" onclick="restart()">Play again?</button>
-        <p id="dealer-cards-el">Dealer's cards:</p>
-        <p id="dealer-sum-el">Dealer's sum:</p>
-        <p></p>
-        <p id="dealer-el"></p>
-        <p>House stays at 17 or higher</p>
-        <p class="slogan">In the end, the House always wins!</p>
+        <div class="game-data">
+            <div class="player" id="player-table-el">
+                <div class="name"><p id="player-el"></p></div>
+                <div class="chips"><p id="chips-el">$1000</p></div>
+                <div class="bet-amount"><p id="bet-el">Bet: 0</p></div>
+                <div class="cards">
+                    <p></p>
+                    <p id="cards-el" class="card"></p>
+                </div>
+                <div class="sum"><p id="sum-el">Sum:</p></div>
+                <div class="b2"></div>
+            </div>
+            <div class="info">
+                <p class="rules" id="rules">House stays at 17 or higher</p>
+                <p class="slogan" id="slogan">
+                    In the end, the House always wins!
+                </p>
+            </div>
+            <div class="dealer" id="dealer-table-el">
+                <div class="dealer-cards">
+                    <p></p>
+                    <p id="dealer-cards-el" class="card"></p>
+                </div>
+                <div class="dealer-sum">
+                    <p id="dealer-sum-el">Sum:</p>
+                </div>
+                <p></p>
+                <div class="dealer-name"><p id="dealer-el">Mana</p></div>
+                <div class="dealer-chips">
+                    <p id="dealer-chips-el">$1000</p>
+                </div>
+            </div>
+        </div>
+
         <script src="game.js"></script>
     </body>
 </html>

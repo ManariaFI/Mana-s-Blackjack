@@ -4,24 +4,25 @@ Mana's Blackjackin todo:
 - Lisää kuvakortit - Done 24.10.23
 - Lisää maat - Done 24.10.23
 -> lisää pakka - Done 24.10.23
-- Kortti-spritet (Mana tekee vapaa-ajalla)
-- Split-funktio toimii oikein
+- Kortti-spritet -> tehdään pelin sisällä
+- Split-funktio toimii oikein -> ei varmuutta lisäänkö split-sääntöä lainkaan, tuntuu erittäin monimutkaiselta
 - Jakajan kassa - Done 19.10.23
 - Game Over - Done 24.10.23
 - Voittoruutu - Done 24.10.23
 - Restart-painike - Done 26.10.22
 - Panoksen valitseminen - Done 24.10.23
-- Sääntöpainike
+- Sääntöpainike -> kai kaikki tietää miten blackjackia pelataan :D
 - Bugien korjaus
 - js-tiedostojen linkittäminen yhtenäiseksi kokonaisuudeksi -> ei tarvetta
 
 Muotoilu:
-- Visuaalisempi käyttöliittymä
+- Visuaalisempi käyttöliittymä - aloitettu 26.10.23
+- Muuta puhekupla oikeaan suuntaan - Done 27.10.23
 - Oikeat pelikortit -> vaatii pelikorttien hardcodea?
 - Joitain hassuja turhia ekstroja
-- Nimensyötöstä oma ponnahdusikkunansa
-- Kielivalikko
-- Suomenkielinen käännös
+- Nimensyötöstä oma (ponnahdus)ikkunansa -> graafisesti hankalaa?
+- Kielivalikko -> periaatteessa mahdollista
+- Suomenkielinen käännös -> ois kiva bonus, aloitettu 27.10.23
 
 Muut:
 - Lisää Blackjackin lisäksi Venttisäännöt vaihtoehdoksi
@@ -30,4 +31,6 @@ Muut:
 
 Bugilista:
 - jakaja nostaa aina kortin salatun kortin paljastuttua - korjattu
-- Nimensyöttö päästää eteenpäin vaikka nimeä ei ole valittu -> johtuu siitä että pelin aloitus käyttää buttonia?
+- Nimensyöttö päästää eteenpäin vaikka nimeä ei ole valittu -> johtuu siitä että pelin aloitus käyttää buttonia? - korjattu
+- Jakajan ensimmäinen uusi kortti ei renderöidy oikein vaan korvaa kakkoskortin - korjattu
+- Käännös resetoituu aina ikkunaa vaihtaessa automaattisesti
