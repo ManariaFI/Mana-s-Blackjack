@@ -44,10 +44,10 @@ const sloganEl = document.getElementById("slogan");
 
 function renderData() {
     playerEl.textContent = player.name;
-    chipsEl.textContent = "$" + player.chips;
+    chipsEl.textContent = local.chips[lang] + player.chips;
     dealerEl.textContent = "Mana";
-    dealerChipsEl.textContent = "$" + dealer.chips;
-    betEl.textContent = "Bet: $" + player.currentBet;
+    dealerChipsEl.textContent = local.chips[lang] + dealer.chips;
+    betEl.textContent = local.bet[lang] + local.chips[lang] + player.currentBet;
 }
 //Localization script:
 let lang = "en";
@@ -91,6 +91,7 @@ const local = {
         en: "Sum: ",
         fi: "Summa: ",
     },
+
     cards: {
         en: "Cards: ",
         fi: "Kortit: ",
@@ -108,8 +109,92 @@ const local = {
         fi: "Lopulta, talo voittaa aina!",
     },
     handStart: {
-        en: "Ok, your bet is $" + player.currentBet + " this time!",
-        fi: "Ok, panoksesi on " + player.currentBet + "€!",
+        en: "Ok, your bet is $",
+        fi: "Ok, panoksesi on €",
+    },
+    double: {
+        en: "DOUBLE",
+        fi: "TUPLAUS",
+    },
+    newCard: {
+        en: "NEW CARD",
+        fi: "UUSI KORTTI",
+    },
+    stand: {
+        en: "STAND",
+        fi: "JÄÄ",
+    },
+    wantCard: {
+        en: "Do you want to draw a new card?",
+        fi: "Haluatko uuden kortin?",
+    },
+    blackJack: {
+        en: "You've got Blackjack!",
+        fi: "Sait Blackjackin!",
+    },
+    twentyOne: {
+        en: "You have 21!",
+        fi: "Tuloksesi on 21!",
+    },
+    lose: {
+        en: "You're out of the game!",
+        fi: "Sinulla meni metsään!",
+    },
+    doubleDown: {
+        en: "DOUBLE DOWN!!!",
+        fi: "TUPLA TAI KUITTI!!!",
+    },
+    double21: {
+        en: "YOU HAVE TWENTY-ONE!!!",
+        fi: "SINULLA ON 21!!!",
+    },
+    doubleOut: {
+        en: "OUT!!!!! YEEHAW!",
+        fi: "METSÄÄN! METSÄÄN!!!",
+    },
+    dealerTurn: {
+        en: "Ok, it's my turn now!",
+        fi: "Ok, minun vuoroni!",
+    },
+    dealerWin: {
+        en: "The house wins!",
+        fi: "Talo voittaa!",
+    },
+    push: {
+        en: "PUSH! Returning your bet!",
+        fi: "TASAN! Palautetaan panos!",
+    },
+    dealerLose: {
+        en: "You won $",
+        fi: "Voitit €",
+    },
+    dealerBust: {
+        en: "I'm out! You won $",
+        fi: "Menin metsään! Voitit €",
+    },
+    dealerDraw: {
+        en: "As per rules, drawing new card",
+        fi: "Nostan kortin sääntöjen mukaisesti",
+    },
+    restart: {
+        en: "RESTART",
+        fi: "UUDESTAAN",
+    },
+    gameOver: {
+        en: "Unfortunately, you are broke. Game over!",
+        fi: "Valitettavasti rahasi on loppu. Peli ohi!",
+    },
+    victory: {
+        en: "Erm, we are out of cash. You win!",
+        fi: "Öh, meiltä loppui käteinen. Voitit!",
+    },
+    yourBet: {
+        en: "Select your bet",
+        fi: "Valitse panos",
+    },
+    deal: {
+        en: "DEAL",
+        fi: "JAA",
     },
 };
 function renderTranslate() {
@@ -129,6 +214,7 @@ function renderTranslate() {
 
 //Game Start
 renderTranslate();
+messageEl.textContent = local.welcome[lang];
 hideButtons();
 startBtn.style.display = "none";
 prepareDeck();
@@ -182,16 +268,22 @@ function dealerAceCheck() {
 //
 
 function handStart() {
-    message = local.handStart[lang];
+    message = local.handStart[lang] + player.currentBet;
     doubleBtn.style.display = "initial";
+    doubleBtn.textContent = local.double[lang];
     newCardBtn.style.display = "initial";
+    newCardBtn.textContent = local.newCard[lang];
     standBtn.style.display = "initial";
+    standBtn.textContent = local.stand[lang];
     startBtn.style.display = "none";
     player.canHit = true;
     player.firstCard = getRandomCard();
     player.secondCard = getRandomCard();
     player.hand = [player.firstCard, player.secondCard];
+    cardsEl.textContent =
+        local.cards[lang] + [player.firstCard + player.secondCard];
     player.sum = cardValue(player.firstCard) + cardValue(player.secondCard);
+    player;
     dealer.firstCard = getRandomCard();
     dealer.secondCard = getRandomCard();
     dealer.hand = [dealer.firstCard];
@@ -206,25 +298,25 @@ function renderGame() {
     for (let i = 0; i < player.hand.length; i++) {
         cardsEl.textContent += player.hand[i] + " ";
     }
-    sumEl.textContent = "Sum: " + player.sum;
+    sumEl.textContent = local.sum[lang] + player.sum;
     dealerCardsEl.textContent = "";
     for (let i = 0; i < dealer.hand.length; i++) {
         dealerCardsEl.textContent += dealer.hand[i] + " ";
     }
-    dealerSumEl.textContent = "Sum: " + dealer.sum;
+    dealerSumEl.textContent = local.sum[lang];
     if (player.sum <= 20) {
-        message = "Do you want to draw a new card?";
+        message = local.wantCard[lang];
     } else if (player.sum === 21 && player.hand.length === 2) {
-        message = "You've got Blackjack!";
+        message = local.blackJack[lang];
         blackJackPay();
         mainMenu();
     } else if (player.sum === 21) {
-        message = "You have 21!";
+        message = local.twentyOne[lang];
         hideButtons();
         player.canHit = false;
         dealerBtn.style.display = "initial";
     } else {
-        message = "You're out of the game!";
+        message = local.lose[lang];
         player.canHit = false;
         dealer.chips += player.currentBet;
         mainMenu();
@@ -254,15 +346,17 @@ function double() {
     dealer.hand = [dealer.firstCard, dealer.secondCard];
     dealer.sum = cardValue(dealer.firstCard) + cardValue(dealer.secondCard);
     if (player.sum < 21) {
-        message = "DOUBLE DOWN!!!";
+        message = local.doubleDown[lang];
         hideButtons();
         dealerBtn.style.display = "initial";
+        dealerBtn.textContent = local.deal[lang];
     } else if (player.sum === 21) {
-        message = "YOU HAVE TWENTY-ONE!!!";
+        message = local.double21[lang];
         hideButtons();
         dealerBtn.style.display = "initial";
+        dealerBtn.textContent = local.deal[lang];
     } else {
-        message = "OUT!!!!! YEEHAW!";
+        message = local.doubleOut[lang];
         dealer.chips += player.currentBet;
         messageEl.textContent = message;
         mainMenu();
@@ -273,7 +367,8 @@ function double() {
 
 function stand() {
     hideButtons();
-    message = "Ok, it's my turn now!";
+    message = local.dealerTurn[lang];
+    messageEl.textContent = message;
     player.canHit = false;
     dealer.hand.push(dealer.secondCard);
     dealerCardsEl.textContent = "";
@@ -281,10 +376,11 @@ function stand() {
         dealerCardsEl.textContent += dealer.hand[i] + " ";
     }
     dealer.sum = cardValue(dealer.firstCard) + cardValue(dealer.secondCard);
-    dealer.sumEl = textContent = "Sum: " + dealer.sum;
+    dealer.sumEl = textContent = local.sum[lang] + dealer.sum;
     messageEl.textContent = message;
     renderData();
     dealerBtn.style.display = "initial";
+    dealerBtn.textContent = local.deal[lang];
 }
 
 function renderDealer() {
@@ -294,10 +390,10 @@ function renderDealer() {
     for (let i = 0; i < dealer.hand.length; i++) {
         dealerCardsEl.textContent += dealer.hand[i] + " ";
 
-        dealerSumEl.textContent = "Sum: " + dealer.sum;
+        dealerSumEl.textContent = local.sum[lang] + dealer.sum;
     }
     if (dealer.sum > 16 && player.sum < dealer.sum && dealer.sum < 22) {
-        message = "The house wins!";
+        message = local.dealerWin[lang];
         dealer.chips += player.currentBet;
         mainMenu();
     } else if (
@@ -305,32 +401,26 @@ function renderDealer() {
         player.sum === dealer.sum &&
         dealer.sum < 22
     ) {
-        message = "PUSH! Returning your bet!";
+        message = local.push[lang];
         pushPay();
         mainMenu();
     } else if (dealer.sum > 16 && dealer.sum < player.sum && dealer.sum < 22) {
         winPay();
-        message = "You won $" + player.chipsWon;
+        message = local.dealerLose[lang] + player.chipsWon;
         mainMenu();
     } else if (dealer.sum > 21) {
         winPay();
-        message = "I'm out! You won $" + player.chipsWon;
+        message = local.dealerBust[lang] + player.chipsWon;
         mainMenu();
     } else {
-        message = "As per rules, drawing new card";
+        message = local.dealerDraw[lang];
         messageEl.textContent = message;
     }
     messageEl.textContent = message;
 }
 
 function restart() {
-    fullReset();
-    deck = [];
-    hideButtons();
-    prepareDeck();
-    player.chips = 1000;
-    dealer.chips = 1000;
-    mainMenu();
+    location.reload();
 }
 //Button click functions
 bet10.addEventListener("click", function () {
@@ -516,7 +606,7 @@ function prepareDeck() {
 //Bet functions
 
 function bet() {
-    message = "Select your bet";
+    message = local.yourBet[lang];
     bet10.style.display = "initial";
     bet20.style.display = "initial";
     bet30.style.display = "initial";
@@ -572,20 +662,23 @@ function mainMenu() {
     hideButtons();
     fullReset();
     startBtn.style.display = "initial";
+    startBtn.textContent = local.start[lang];
     betEl.textContent = "Bet: $" + player.currentBet;
 }
 
 function startGame() {
     if (player.chips <= 0) {
-        message = "Unfortunately, you are broke. Game over!";
+        message = local.gameOver[lang];
         hideButtons();
         restartBtn.style.display = "initial";
+        restartBtn.textContent = local.restart[lang];
         messageEl.textContent = message;
         startBtn.style.display = "none";
     } else if (dealer.chips <= 0) {
-        message = "Erm, we are out of cash. You win!";
+        message = local.victory[lang];
         hideButtons();
         messageEl.textContent = message;
+        restartBtn.textContent = local.restart[lang];
         startBtn.style.display = "none";
         restartBtn.style.display = "initial";
     } else {
@@ -596,18 +689,6 @@ function startGame() {
         dealerCardsEl.textContent = dealer.hand;
         startBtn.style.display = "none";
     }
-}
-//Bet functions
-
-function bet() {
-    message = "Select your bet";
-    bet10.style.display = "initial";
-    bet20.style.display = "initial";
-    bet30.style.display = "initial";
-    bet40.style.display = "initial";
-    bet50.style.display = "initial";
-
-    messageEl.textContent = message;
 }
 function handReset() {
     player.hand = [];

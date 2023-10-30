@@ -33,4 +33,5 @@ Bugilista:
 - jakaja nostaa aina kortin salatun kortin paljastuttua - korjattu
 - Nimensyöttö päästää eteenpäin vaikka nimeä ei ole valittu -> johtuu siitä että pelin aloitus käyttää buttonia? - korjattu
 - Jakajan ensimmäinen uusi kortti ei renderöidy oikein vaan korvaa kakkoskortin - korjattu
-- Käännös resetoituu aina ikkunaa vaihtaessa automaattisesti
+- Kierrosta aloittaessa peli väittää panoksen olevan virheellisesti 0 pelimerkkiä (peli rekisteröi panoksen oikein) -> johtuu käännösscriptistä joka ei ota oikeaa panosta huomioon
+- Vanhat bugit esim virheellinen tuplaus palanneet käännösurakan myötä
